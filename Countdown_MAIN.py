@@ -9,12 +9,16 @@ import sys
 
 # Lists of different letters in the respective lists
 possible_vowels = 'aeiou'
+vowel_weights = [8.2, 12.7, 7.0, 7.5, 2.8]
 
-possible_vowels = 'aeiou'
 possible_consanents = 'bcdfghjklmnpqrstvwxyz'
+consonant_weights = [
+    1.5, 2.8, 4.3, 2.2, 2.0, 6.1, 0.2, 0.8, 4.0, 2.4,
+    6.7, 1.9, 0.1, 6.0, 6.3, 9.1, 1.0, 2.4, 0.2, 2.0, 0.1
+]
 
 # Opens the file of the all English words that this game uses and saves it as cd_words
-cdWords_file = open('countdown words.txt')
+cdWords_file = open('countdownwords.txt')
 cd_words = cdWords_file.read()
 cdWords_file.close()
 
@@ -457,7 +461,7 @@ def Normalmain():
     # The buttons to generate vowels and consonant when players press them
     def vowel_letter():
         global i_position
-        final_vowel = random.choice(possible_vowels)
+        final_vowel = random.choices(possible_vowels, weights=vowel_weights, k=1)[0]
         cd_list.append(final_vowel)
         vowel_datum = StringVar()
         vowel_datum.set(final_vowel.capitalize())
@@ -471,7 +475,7 @@ def Normalmain():
             
     def consonant_letter():
         global i_position
-        final_consanent = random.choice(possible_consanents)
+        final_consanent = random.choices(possible_consanents, weights=consonant_weights, k=1)[0]
         cd_list.append(final_consanent)
         consanent_datum = StringVar()
         consanent_datum.set(final_consanent.capitalize())
